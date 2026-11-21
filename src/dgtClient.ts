@@ -45,12 +45,15 @@ export class DgtClient {
 
   private extractNumericRate(field: number | DgtRateItem | undefined): number {
     if (typeof field === "number" && Number.isFinite(field)) return field;
+
     if (field && typeof field === "object") {
       const value: unknown = field.valor;
+
       if (typeof value === "number" && Number.isFinite(value)) {
         return value;
       }
     }
+
     throw new Error("Unexpected response structure from DGT API");
   }
 
@@ -60,18 +63,23 @@ export class DgtClient {
     }
 
     const parsed: DgtCurrentResponse = {};
+
     if (payload.compra !== undefined) {
       if (!this.isDgtRateItem(payload.compra)) {
         throw new Error("Unexpected response structure from DGT API");
       }
+
       parsed.compra = payload.compra;
     }
+
     if (payload.venta !== undefined) {
       if (!this.isDgtRateItem(payload.venta)) {
         throw new Error("Unexpected response structure from DGT API");
       }
+
       parsed.venta = payload.venta;
     }
+
     return parsed;
   }
 
@@ -94,6 +102,7 @@ export class DgtClient {
   public async getUsdToCrcRate(date?: string): Promise<ExchangeRateResult> {
     const cacheKey = date ?? "current";
     const cached = this.cache.get(cacheKey);
+
     if (cached && cached.expiresAt > Date.now()) {
       return cached.data;
     }
@@ -109,6 +118,7 @@ export class DgtClient {
     if (response.status === 429) {
       throw new Error("Rate limit exceeded on DGT API (HTTP 429). Try again shortly.");
     }
+
     if (!response.ok) {
       throw new Error(`DGT API request failed with HTTP ${String(response.status)}`);
     }
@@ -134,9 +144,11 @@ export class DgtClient {
         (candidate): candidate is DgtHistoricEntry =>
           this.isDgtHistoricEntry(candidate) && candidate.fecha === undefined
       );
+
       if (!entry) {
         throw new Error(`No exchange rate data found for date ${date}`);
       }
+
       result = {
         date: entry.fecha ?? date,
         currency: "USD",
@@ -147,6 +159,7 @@ export class DgtClient {
     }
 
     this.cache.set(cacheKey, { expiresAt: Date.now() + DGT_CACHE_TTL_MS, data: result });
+
     return result;
   }
 }

@@ -1,7 +1,7 @@
 ---
 name: MCP Builder & Reviewer
 description: Develops and reviews TypeScript MCP tools, schemas, and stdio transport safety.
-tools: [read, search, edit, run_in_terminal]
+tools: ['execute', 'edit', 'read', 'search']
 ---
 
 You are a specialist in building and auditing Model Context Protocol (MCP) servers in TypeScript.

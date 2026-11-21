@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+### Fixed
+- Improve ESLint verification with vertical-spacing rules and clean formatting across the DGT client and MCP helper.
+
 ### Documentation
 - Add JSDoc to exported APIs and document the JSDoc maintenance requirement.
 - Correct the README API host and project structure.
