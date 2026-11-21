@@ -1,11 +1,14 @@
 import { afterEach, beforeEach, describe, it, mock } from "node:test";
 import assert from "node:assert/strict";
-import { clearDgtCache, getUsdToCrcRate } from "../src/dgtClient.js";
-import { handleGetUsdToCrcRate } from "../src/tools/getUsdToCrcRate.js";
+import { DgtClient, dgtClient } from "../src/dgtClient.js";
+import { handleGetUsdToCrcRate } from "../src/helpers/getUsdToCrcRate.js";
 
 void describe("dgtClient", () => {
+  const client = new DgtClient();
+
   beforeEach(() => {
-    clearDgtCache();
+    client.clearCache();
+    dgtClient.clearCache();
   });
 
   afterEach(() => {
@@ -23,7 +26,7 @@ void describe("dgtClient", () => {
       );
     });
 
-    const result = await getUsdToCrcRate();
+    const result = await client.getUsdToCrcRate();
     assert.deepEqual(result, {
       date: "2026-11-21",
       currency: "USD",
@@ -52,7 +55,7 @@ void describe("dgtClient", () => {
       );
     });
 
-    const result = await getUsdToCrcRate("2026-10-15");
+    const result = await client.getUsdToCrcRate("2026-10-15");
     assert.equal(result.bid, 502.5);
     assert.equal(result.selling, 509.0);
     assert.equal(result.date, "2026-10-15");
@@ -69,10 +72,27 @@ void describe("dgtClient", () => {
       );
     });
 
-    await getUsdToCrcRate();
-    await getUsdToCrcRate();
+    await client.getUsdToCrcRate();
+    await client.getUsdToCrcRate();
 
     assert.equal(fetchMock.mock.callCount(), 1);
+  });
+
+  void it("keeps caches isolated between client instances", async () => {
+    const fetchMock = mock.method(globalThis, "fetch", () => {
+      return new Response(
+        JSON.stringify({
+          compra: { fecha: "2026-11-21", valor: 505.0 },
+          venta: { fecha: "2026-11-21", valor: 511.0 },
+        }),
+        { status: 200 }
+      );
+    });
+
+    await client.getUsdToCrcRate();
+    await new DgtClient().getUsdToCrcRate();
+
+    assert.equal(fetchMock.mock.callCount(), 2);
   });
 
   void it("throws descriptive error on HTTP 429 rate limit", async () => {
@@ -81,7 +101,7 @@ void describe("dgtClient", () => {
     });
 
     await assert.rejects(
-      () => getUsdToCrcRate(),
+      () => client.getUsdToCrcRate(),
       /Rate limit exceeded on DGT API \(HTTP 429\)/
     );
   });
@@ -92,7 +112,7 @@ void describe("dgtClient", () => {
     });
 
     await assert.rejects(
-      () => getUsdToCrcRate("2026-10-15"),
+      () => client.getUsdToCrcRate("2026-10-15"),
       /No exchange rate data found for date 2026-10-15/
     );
   });
@@ -103,7 +123,7 @@ void describe("dgtClient", () => {
     });
 
     await assert.rejects(
-      () => getUsdToCrcRate(),
+      () => client.getUsdToCrcRate(),
       /Unexpected response structure from DGT API/
     );
   });
