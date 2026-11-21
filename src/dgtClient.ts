@@ -1,3 +1,6 @@
+/**
+ * Normalized USD/CRC exchange rate returned by the DGT client.
+ */
 export interface ExchangeRateResult {
   date: string;
   currency: "USD";
@@ -51,6 +54,11 @@ const BASE_URL = "https://hacienda.go.cr";
 const cache = new Map<string, { expiresAt: number; data: ExchangeRateResult }>();
 const CACHE_TTL_MS = 15 * 60 * 1000;
 
+/**
+ * Clears cached current and historical exchange rates.
+ *
+ * Primarily used to isolate requests in tests or force fresh DGT API calls.
+ */
 export function clearDgtCache(): void {
   cache.clear();
 }
@@ -93,6 +101,13 @@ function parseCurrentResponse(payload: unknown): DgtCurrentResponse {
   return parsed;
 }
 
+/**
+ * Fetches the current or historical USD/CRC exchange rate.
+ *
+ * @param date - Optional date in `YYYY-MM-DD` format. Omit it to fetch today's rate.
+ * @returns The normalized bid and selling exchange rates.
+ * @throws {Error} When the DGT API request fails or returns unexpected or unavailable data.
+ */
 export async function getUsdToCrcRate(date?: string): Promise<ExchangeRateResult> {
   const cacheKey = date ?? "current";
   const cached = cache.get(cacheKey);
