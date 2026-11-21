@@ -16,3 +16,6 @@ When this skill is invoked:
    - Handle `noUncheckedIndexedAccess` safely (check for `undefined` before accessing array elements).
 4. **Verify tests**: Ensure all unit tests in `tests/` pass and add test cases if a bug was uncovered.
 5. **Final confirmation**: Re-run `npm run check` until it exits with code `0`.
+6. **Vertical Spacing & Readability**:
+   - Always add a blank line before and after logical blocks (`if`, `switch`, `for`, `while`, `try/catch`) and before `return` statements.
+   - Avoid dense, tightly packed blocks of code; prioritize visual breathing room between distinct operations.
