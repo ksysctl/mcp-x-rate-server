@@ -14,6 +14,7 @@
 - **Type-only imports**: Use `import type { ... }` for types and interfaces.
 - **Relative `.js` extensions**: All local imports in `src/` and `tests/` must end with `.js` (e.g., `./dgtClient.js`).
 - **Timezone**: Always use `America/Costa_Rica` when deriving local current dates.
+- **JSDoc**: When changing code, update its existing JSDoc. If JSDoc is missing from the relevant exported class, function, method, or type, add it.
 
 ## Critical MCP & DGT API Rules
 - **Never use `console.log()`**: `stdout` is reserved for JSON-RPC frames. Use `console.error()` only (enforced by ESLint `no-console`).

@@ -1,6 +1,6 @@
 # dgt-x-rate-mcp
 
-A Model Context Protocol (MCP) server built with TypeScript that fetches official USD to CRC (Costa Rican Colón) bid (*compra*) and selling (*venta*) exchange rates from Costa Rica's DGT / Ministerio de Hacienda public API (`https://api.hacienda.go.cr`).
+A Model Context Protocol (MCP) server built with TypeScript that fetches official USD to CRC (Costa Rican Colón) bid (*compra*) and selling (*venta*) exchange rates from Costa Rica's DGT / Ministerio de Hacienda public API (`https://hacienda.go.cr`).
 
 ## Features
 
@@ -90,9 +90,11 @@ Add to your `claude_desktop_config.json`:
 ```text
 ├── src/
 │   ├── dgtClient.ts   # HTTP client, response normalization, and TTL cache
-│   └── index.ts       # MCP server definition and stdio transport setup
+│   ├── index.ts       # MCP server definition and stdio transport setup
+│   └── tools/
+│       └── getUsdToCrcRate.ts # MCP tool result handling
 ├── tests/
-│   └── dgtClient.test.ts
+│   └── dgtCLient.test.ts
 ├── AGENTS.md          # AI coding agent instructions and conventions
 └── package.json
 ```

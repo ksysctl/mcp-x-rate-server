@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+### Documentation
+- Add JSDoc to exported APIs and document the JSDoc maintenance requirement.
+- Correct the README API host and project structure.
+
 ### Changed
 - Upgrade GitHub Actions to Node 24-compatible versions and run CI on Node.js 24.
 
