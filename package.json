@@ -1,0 +1,26 @@
+{
+  "name": "dgt-x-rate-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "dgt-x-rate-mcp": "./build/src/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src tests",
+    "test": "npm run build && node --test build/tests/**/*.test.js",
+    "check": "npm run lint && npm test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.18.0",
+    "globals": "^15.14.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.20.0"
+  }
+}

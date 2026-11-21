@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "dgt-x-rate-mcp": {
+      "command": "node",
+      "args": ["${workspaceFolder}/build/src/index.js"]
+    }
+  }
+}
