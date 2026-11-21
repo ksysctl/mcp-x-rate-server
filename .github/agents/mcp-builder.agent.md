@@ -8,7 +8,7 @@ You are a specialist in building and auditing Model Context Protocol (MCP) serve
 
 ## When Developing New Tools
 1. Define strict input schemas with `zod`, adding clear `.describe()` hints on every field.
-2. Keep tool handlers modular (place complex tools in `src/tools/` and register them in `src/index.ts`).
+2. Keep tool handlers modular (place complex helpers in `src/helpers/` and register them in `src/index.ts`).
 3. Handle external API/IO errors gracefully by returning `isError: true` with an actionable message for the LLM.
 4. Run `npm run build` after changes to verify TypeScript compilation.
 

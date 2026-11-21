@@ -1,4 +1,4 @@
-import { getUsdToCrcRate } from "../dgtClient.js";
+import { dgtClient } from "../dgtClient.js";
 
 /**
  * MCP-compatible result shape for the USD/CRC rate tool.
@@ -17,7 +17,7 @@ export interface RateToolResult {
  */
 export async function handleGetUsdToCrcRate(date?: string): Promise<RateToolResult> {
   try {
-    const rate = await getUsdToCrcRate(date);
+    const rate = await dgtClient.getUsdToCrcRate(date);
     return {
       content: [{ type: "text", text: JSON.stringify(rate, null, 2) }],
     };

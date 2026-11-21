@@ -5,7 +5,7 @@ A Model Context Protocol (MCP) server built with TypeScript that fetches officia
 ## Features
 
 - **Current & Historical Rates**: Retrieves today's USD/CRC exchange rate or looks up any historical date (`YYYY-MM-DD`).
-- **Built-in Caching**: Uses a 15-minute in-memory TTL cache to prevent redundant API calls and stay well within Hacienda's rate limits (20 req/s burst, 10 req/s sustained).
+- **Built-in Caching**: Each `DgtClient` instance uses a 15-minute in-memory TTL cache to prevent redundant API calls and stay well within Hacienda's rate limits (20 req/s burst, 10 req/s sustained).
 - **Timezone-Aware**: Defaults to Costa Rica local time (`America/Costa_Rica`) when resolving current dates.
 - **Strict TypeScript**: Built with ES modules, Zod schema validation, ESLint (`strictTypeChecked`), and Node's native test runner.
 
@@ -89,9 +89,11 @@ Add to your `claude_desktop_config.json`:
 
 ```text
 ├── src/
-│   ├── dgtClient.ts   # HTTP client, response normalization, and TTL cache
+│   ├── dgtClient.ts   # DgtClient class, response normalization, and per-instance TTL cache
+│   ├── constants.ts   # DGT API and cache constants
 │   ├── index.ts       # MCP server definition and stdio transport setup
-│   └── tools/
+│   ├── types.ts       # Shared exchange-rate and DGT response types
+│   └── helpers/
 │       └── getUsdToCrcRate.ts # MCP tool result handling
 ├── tests/
 │   └── dgtCLient.test.ts

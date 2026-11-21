@@ -2,7 +2,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { handleGetUsdToCrcRate } from "./tools/getUsdToCrcRate.js";
+import { handleGetUsdToCrcRate } from "./helpers/getUsdToCrcRate.js";
 
 const server = new McpServer({
   name: "dgt-x-rate-mcp",

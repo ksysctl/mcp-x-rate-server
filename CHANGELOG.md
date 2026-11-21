@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 - Correct the README API host and project structure.
 
 ### Changed
+- Refactor the DGT client into an instance-based API with isolated 15-minute caches and shared MCP helpers.
 - Upgrade GitHub Actions to Node 24-compatible versions and run CI on Node.js 24.
 
 ## - 2026-11-21
