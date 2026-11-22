@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint src tests",
-    "test": "npm run build && node --test build/tests/**/*.test.js",
+    "test": "npm run build && node --test build/tests/**/*.spec.js",
     "check": "npm run lint && npm test"
   },
   "dependencies": {
