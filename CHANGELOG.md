@@ -37,10 +37,13 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Added
 
+- Add the `dgt-x-rate` Agent Skill with VS Code and Copilot CLI setup guidance.
+- Add a `package:skill` script to package the skill for upload.
 - Add npm package metadata and automated Release Please/npm publishing workflow.
 
 ### Fixed
 
+- Update DGT API requests to use the official `api.hacienda.go.cr/indicadores/tc/dolar` endpoints.
 - Build release output before publishing and allow manual retries for an existing release tag.
 - Add deterministic end-to-end MCP coverage for stdio initialization, tool discovery, and tool invocation.
 

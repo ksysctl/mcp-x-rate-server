@@ -22,3 +22,7 @@
 - **Cache DGT API calls**: Respect DGT rate limits (max 20 req/s burst) by keeping in-memory TTL caching in `src/dgtClient.ts`.
 - **Graceful tool errors**: Catch errors inside MCP tool handlers and return `{ content: [{ type: "text", text: "..." }], isError: true }`.
 - **Unit tests required**: Every new client method or tool change must include mocked unit tests in `tests/`.
+
+## Agent Skill
+
+Keep `skills/dgt-x-rate/SKILL.md` synchronized with the package version whenever a release is made, and update its tool instructions and examples whenever the `get_usd_crc_rate` signature changes.

@@ -16,7 +16,18 @@ void describe("dgtClient", () => {
   });
 
   void it("returns current USD to CRC bid and selling rates", async () => {
-    void mock.method(globalThis, "fetch", () => {
+    void mock.method(globalThis, "fetch", (input: string | URL | Request) => {
+      const url =
+        typeof input === "string"
+          ? input
+          : input instanceof URL
+            ? input.toString()
+            : input.url;
+      const requestUrl = new URL(url);
+
+      assert.equal(requestUrl.pathname, "/indicadores/tc/dolar");
+      assert.equal(requestUrl.search, "");
+
       return new Response(
         JSON.stringify({
           compra: { fecha: "2026-11-21", valor: 505.12 },
@@ -44,7 +55,11 @@ void describe("dgtClient", () => {
           : input instanceof URL
             ? input.toString()
             : input.url;
-      assert.match(url, /\/historico\?d=2026-10-15&h=2026-10-15$/);
+      const requestUrl = new URL(url);
+
+      assert.equal(requestUrl.pathname, "/indicadores/tc/dolar/historico");
+      assert.equal(requestUrl.searchParams.get("d"), "2026-10-15");
+      assert.equal(requestUrl.searchParams.get("h"), "2026-10-15");
 
       return new Response(
         JSON.stringify([

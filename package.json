@@ -1,6 +1,6 @@
 {
   "name": "dgt-x-rate-mcp",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "An MCP server for official Costa Rican USD to CRC exchange rates",
   "license": "MIT",
   "repository": {
@@ -33,6 +33,7 @@
     "lint": "eslint src tests",
     "test": "npm run build && node --test build/tests/**/*.spec.js",
     "check": "npm run lint && npm test",
+    "package:skill": "mkdir -p dist/skill && zip -j -q dist/skill/dgt-x-rate.zip skills/dgt-x-rate/SKILL.md",
     "prepublishOnly": "npm run check"
   },
   "dependencies": {
