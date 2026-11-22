@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [1.2.0](https://github.com/ksysctl/mcp-x-rate-server/compare/dgt-x-rate-mcp-v1.1.1...dgt-x-rate-mcp-v1.2.0) (2026-11-22)
+
+
+### Features
+
+* assign PRs and improve npm release workflow ([fd1bcce](https://github.com/ksysctl/mcp-x-rate-server/commit/fd1bcce487bb2595f880cfbf2874af52f58a88ef))
+* assign pull requests to ksysctl by default ([71a21b1](https://github.com/ksysctl/mcp-x-rate-server/commit/71a21b157d9598bcdb4fbb9a038f2562f48ae410))
+
 ## [1.1.1](https://github.com/ksysctl/mcp-x-rate-server/compare/dgt-x-rate-mcp-v1.1.0...dgt-x-rate-mcp-v1.1.1) (2026-11-22)
 
 
