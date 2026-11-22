@@ -108,8 +108,8 @@ export class DgtClient {
     }
 
     const url = date
-      ? `${DGT_BASE_URL}/historico?d=${encodeURIComponent(date)}&h=${encodeURIComponent(date)}`
-      : DGT_BASE_URL;
+      ? `${DGT_BASE_URL}/indicadores/tc/dolar/historico?d=${encodeURIComponent(date)}&h=${encodeURIComponent(date)}`
+      : `${DGT_BASE_URL}/indicadores/tc/dolar`;
 
     const response = await fetch(url, {
       headers: { Accept: "application/json" },

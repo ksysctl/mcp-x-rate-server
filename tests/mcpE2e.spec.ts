@@ -43,7 +43,7 @@ void describe("MCP server end-to-end", () => {
     const apiServer = createServer((request, response) => {
       const url = new URL(request.url ?? "/", "http://127.0.0.1");
 
-      assert.equal(url.pathname, "/historico");
+      assert.equal(url.pathname, "/indicadores/tc/dolar/historico");
       assert.equal(url.searchParams.get("d"), "2026-10-15");
       assert.equal(url.searchParams.get("h"), "2026-10-15");
 
