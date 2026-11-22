@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+### Added
+- Add deterministic end-to-end MCP coverage for stdio initialization, tool discovery, and tool invocation.
+
+## [1.0.0] - 2026-11-22
+
 ### Fixed
 - Improve ESLint verification with vertical-spacing rules and clean formatting across the DGT client and MCP helper.
 
