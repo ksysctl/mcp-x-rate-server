@@ -85,6 +85,23 @@ Add to your `claude_desktop_config.json`:
 | `npm test` | Builds the project and runs unit tests via `node:test` |
 | `npm run check` | Runs linting, compilation, and unit tests in sequence |
 
+## Releases
+
+Use [Conventional Commits](https://www.conventionalcommits.org/) on `main`:
+`fix:` creates a patch release, `feat:` a minor release, and a breaking change
+creates a major release. Release Please opens a PR with the version and
+`CHANGELOG.md` updates. Merging that PR creates a GitHub Release and publishes
+the package to npm.
+
+To enable publishing, publish the package once, then configure its npm
+**Trusted Publisher** to use GitHub Actions with organization/user `ksysctl`,
+repository `mcp-x-rate-server`, and workflow filename `release.yml`. Allow
+direct publishing in the trusted publisher settings. The initial npm publish
+is a one-time manual step; afterward the workflow uses OIDC, so no npm token
+needs to be stored in GitHub. Also enable **Allow GitHub Actions to create and
+approve pull requests** in the repository's Actions settings so Release Please
+can open release PRs.
+
 ## Project Structure
 
 ```text

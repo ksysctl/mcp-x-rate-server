@@ -1,7 +1,30 @@
 {
   "name": "dgt-x-rate-mcp",
   "version": "1.0.0",
+  "description": "An MCP server for official Costa Rican USD to CRC exchange rates",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ksysctl/mcp-x-rate-server.git"
+  },
+  "homepage": "https://github.com/ksysctl/mcp-x-rate-server#readme",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "exchange-rate",
+    "costa-rica",
+    "usd",
+    "crc"
+  ],
   "type": "module",
+  "files": [
+    "build/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "dgt-x-rate-mcp": "./build/src/index.js"
   },
@@ -9,7 +32,8 @@
     "build": "tsc",
     "lint": "eslint src tests",
     "test": "npm run build && node --test build/tests/**/*.spec.js",
-    "check": "npm run lint && npm test"
+    "check": "npm run lint && npm test",
+    "prepublishOnly": "npm run check"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
