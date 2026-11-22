@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [1.1.1](https://github.com/ksysctl/mcp-x-rate-server/compare/dgt-x-rate-mcp-v1.1.0...dgt-x-rate-mcp-v1.1.1) (2026-11-22)
+
+
+### Bug Fixes
+
+* support npm release retries ([#9](https://github.com/ksysctl/mcp-x-rate-server/issues/9)) ([c07ac21](https://github.com/ksysctl/mcp-x-rate-server/commit/c07ac2153d5804aaad2e3c41085a4cddb2b1aa8f))
+
 ## [1.1.0](https://github.com/ksysctl/mcp-x-rate-server/compare/dgt-x-rate-mcp-v1.0.0...dgt-x-rate-mcp-v1.1.0) (2026-11-22)
 
 
