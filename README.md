@@ -182,6 +182,7 @@ Add to your `claude_desktop_config.json`:
 | `npm run lint` | Runs strict ESLint checks across `src/` and `tests/` |
 | `npm test` | Builds the project and runs `build/tests/**/*.spec.js` via `node:test` |
 | `npm run check` | Runs linting, compilation, and unit tests in sequence |
+| `npm run package:skill` | Packages `skills/dgt-x-rate/SKILL.md` as `dist/skill/dgt-x-rate.zip` |
 
 ## API Configuration
 
@@ -222,6 +223,9 @@ can open release PRs.
 ├── tests/
 │   ├── dgtClient.spec.ts
 │   └── mcpE2e.spec.ts
+├── skills/
+│   └── dgt-x-rate/
+│       └── SKILL.md      # Agent Skill source; package with `npm run package:skill`
 ├── AGENTS.md          # AI coding agent instructions and conventions
 └── package.json
 ```
