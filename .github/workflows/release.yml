@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 jobs:
@@ -27,6 +28,23 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assign release PRs to ksysctl
+        if: steps.release.outputs.prs_created == 'true'
+        uses: actions/github-script@v8
+        env:
+          PULL_REQUESTS: ${{ steps.release.outputs.prs }}
+        with:
+          script: |
+            const pullRequests = JSON.parse(process.env.PULL_REQUESTS ?? "[]");
+
+            for (const pullRequest of pullRequests) {
+              await github.rest.issues.addAssignees({
+                ...context.repo,
+                issue_number: pullRequest.number,
+                assignees: ["ksysctl"],
+              });
+            }
 
   publish:
     needs: release-please
