@@ -31,12 +31,26 @@ Fetches the official USD to CRC bid and selling exchange rates.
 
 ## Agent Skill
 
-This repository includes the `dgt-x-rate` Agent Skill at
-[`skills/dgt-x-rate/SKILL.md`](skills/dgt-x-rate/SKILL.md). It is compatible
-with the open `SKILL.md` standard and can be used
-with Claude Code, Cursor, and GitHub Copilot. Run `npm run package:skill` to
-create `dist/skill/dgt-x-rate.zip` for upload; the Skill is not included in the
-npm package.
+The `skills/` directory contains the `dgt-x-rate` Agent Skill:
+
+```text
+skills/
+└── dgt-x-rate/
+    └── SKILL.md
+```
+
+[`skills/dgt-x-rate/SKILL.md`](skills/dgt-x-rate/SKILL.md) follows the open
+`SKILL.md` standard and can be used with Claude Code, Cursor, and GitHub
+Copilot. To bundle it for upload, run the `package:skill` script from the
+repository root:
+
+```bash
+npm run package:skill
+```
+
+The script in `package.json` creates `dist/skill/dgt-x-rate.zip` from
+`skills/dgt-x-rate/SKILL.md`. The skill source and generated zip are not
+included in the published npm package.
 
 ## Upstream API Reference
 
