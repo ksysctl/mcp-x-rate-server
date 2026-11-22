@@ -46,6 +46,28 @@ npm run build
 
 ## Client Configuration
 
+### npm / npx
+
+Run the published package directly:
+
+```bash
+npx -y dgt-x-rate-mcp
+```
+
+For an MCP client that supports a local executable command, use `npx`
+instead of a workspace build:
+
+```json
+{
+  "mcpServers": {
+    "dgt-x-rate-mcp": {
+      "command": "npx",
+      "args": ["-y", "dgt-x-rate-mcp"]
+    }
+  }
+}
+```
+
 ### VS Code (GitHub Copilot)
 
 Add the server to `.vscode/mcp.json`:
@@ -82,8 +104,17 @@ Add to your `claude_desktop_config.json`:
 | :--- | :--- |
 | `npm run build` | Compiles TypeScript (`src/` and `tests/`) into `build/` |
 | `npm run lint` | Runs strict ESLint checks across `src/` and `tests/` |
-| `npm test` | Builds the project and runs unit tests via `node:test` |
+| `npm test` | Builds the project and runs `build/tests/**/*.spec.js` via `node:test` |
 | `npm run check` | Runs linting, compilation, and unit tests in sequence |
+
+## API Configuration
+
+Set `DGT_BASE_URL` to override the default `https://hacienda.go.cr` base URL.
+This is useful for local mock servers and end-to-end tests:
+
+```bash
+DGT_BASE_URL=http://127.0.0.1:3000 node build/src/index.js
+```
 
 ## Releases
 
@@ -113,7 +144,8 @@ can open release PRs.
 │   └── helpers/
 │       └── getUsdToCrcRate.ts # MCP tool result handling
 ├── tests/
-│   └── dgtCLient.test.ts
+│   ├── dgtClient.spec.ts
+│   └── mcpE2e.spec.ts
 ├── AGENTS.md          # AI coding agent instructions and conventions
 └── package.json
 ```

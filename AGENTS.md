@@ -5,7 +5,7 @@
 - **MCP SDK**: `@modelcontextprotocol/sdk` (`McpServer` + `StdioServerTransport`).
 - **Build**: `npm run build` (outputs to `build/src/index.js`).
 - **Lint**: `npm run lint` (ESLint `strictTypeChecked`).
-- **Test**: `npm test` (runs `node --test` on `build/tests/**/*.test.js`).
+- **Test**: `npm test` (builds first, then runs `node --test` on `build/tests/**/*.spec.js`).
 - **Full Verification**: Always run `npm run check` before finishing any task.
 
 ## TypeScript & Best Practices Rules
