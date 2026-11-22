@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 ### Added
 
 - Add npm package metadata and automated Release Please/npm publishing workflow.
+
+### Fixed
+
+- Build release output before publishing and allow manual retries for an existing release tag.
 - Add deterministic end-to-end MCP coverage for stdio initialization, tool discovery, and tool invocation.
 
 ## [1.0.0] - 2026-11-22
