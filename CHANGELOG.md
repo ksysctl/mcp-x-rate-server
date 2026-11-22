@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [1.1.0](https://github.com/ksysctl/mcp-x-rate-server/compare/dgt-x-rate-mcp-v1.0.0...dgt-x-rate-mcp-v1.1.0) (2026-11-22)
+
+
+### Features
+
+* add DGT USD to CRC MCP server ([4472b3d](https://github.com/ksysctl/mcp-x-rate-server/commit/4472b3d41dfa54ca38a6e95dc5ab9c83dfbc14bf))
+* automate npm package releases ([#6](https://github.com/ksysctl/mcp-x-rate-server/issues/6)) ([4458dfc](https://github.com/ksysctl/mcp-x-rate-server/commit/4458dfcaf8a353159195851ad6c316e042acb70a))
+
+
+### Bug Fixes
+
+* use default Release Please config filename ([#7](https://github.com/ksysctl/mcp-x-rate-server/issues/7)) ([082bc23](https://github.com/ksysctl/mcp-x-rate-server/commit/082bc231058dddafb3a05bbfa01d23af37037779))
+
 ## [Unreleased]
 
 ### Added
