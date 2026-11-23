@@ -6,7 +6,7 @@ description: >-
   API for accounting, Hacienda electronic invoicing (v4.3/v4.4), and currency
   conversion.
 # x-release-please-start-version
-version: "1.4.2"
+version: "1.4.3"
 # x-release-please-end
 metadata:
   requirements: "Requires the dgt-x-rate-mcp MCP server, launched with npx -y dgt-x-rate-mcp."

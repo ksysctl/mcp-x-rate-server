@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [1.4.3](https://github.com/ksysctl/mcp-x-rate-server/compare/v1.4.2...v1.4.3) (2026-11-23)
+
+
+### Bug Fixes
+
+* gate Release Please on release merges ([2bb7a4a](https://github.com/ksysctl/mcp-x-rate-server/commit/2bb7a4a00b6ef820a6fb3b55ac8545d676078fc9))
+* gate Release Please on release merges ([#25](https://github.com/ksysctl/mcp-x-rate-server/issues/25)) ([6279ed8](https://github.com/ksysctl/mcp-x-rate-server/commit/6279ed8046028ed0a2484d20e5577de87140957a))
+
 ## [1.4.2](https://github.com/ksysctl/mcp-x-rate-server/compare/v1.4.1...v1.4.2) (2026-11-23)
 
 
