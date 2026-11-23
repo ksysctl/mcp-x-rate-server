@@ -21,5 +21,6 @@ When this skill is invoked:
 4. **Push the source branch**: Run `git push -u origin <source-branch>`.
 5. **Create the PR**:
    - Use `gh pr create --base <base-branch> --head <source-branch>` with a concise title and summary body describing the changes.
+   - Take the prefix before the first `/` in the source branch (for example, `feat` from `feat/add-cache`). If a GitHub label with that exact name exists, add `--label <prefix>` to the `gh pr create` command; otherwise, create the PR without a label.
    - Do not enable auto-merge or merge the PR.
    - If GitHub CLI is unavailable or unauthenticated, provide the GitHub compare URL for `<base-branch>...<source-branch>`.
