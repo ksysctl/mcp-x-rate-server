@@ -1,6 +1,6 @@
 {
   "name": "dgt-x-rate-mcp",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "An MCP server for official Costa Rican USD to CRC exchange rates",
   "license": "MIT",
   "repository": {
