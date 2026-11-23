@@ -201,6 +201,13 @@ creates a major release. Release Please opens a PR with the version and
 `CHANGELOG.md` updates. Merging that PR creates a GitHub Release and publishes
 the package to npm.
 
+Release tags use the standard `v<version>` format. Older
+`dgt-x-rate-mcp-v<version>` tags remain available for compatibility.
+
+The release configuration also updates the version in
+`skills/dgt-x-rate/SKILL.md`. Keep that file's tool instructions and examples
+synchronized with `get_usd_crc_rate` whenever its signature or behavior changes.
+
 To enable publishing, publish the package once, then configure its npm
 **Trusted Publisher** to use GitHub Actions with organization/user `ksysctl`,
 repository `mcp-x-rate-server`, and workflow filename `release.yml`. Allow

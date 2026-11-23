@@ -5,7 +5,9 @@ description: >-
   (compra) and selling (venta), from the Ministerio de Hacienda / DGT public
   API for accounting, Hacienda electronic invoicing (v4.3/v4.4), and currency
   conversion.
-version: "1.3.0"
+# x-release-please-start-version
+version: "1.4.0"
+# x-release-please-end
 metadata:
   requirements: "Requires the dgt-x-rate-mcp MCP server, launched with npx -y dgt-x-rate-mcp."
   outbound_http: "Requests are made solely to https://api.hacienda.go.cr."
