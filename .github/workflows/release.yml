@@ -23,11 +23,51 @@ jobs:
       release_created: ${{ steps.release.outputs.release_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
+      - name: Check out merge commit
+        uses: actions/checkout@v7
+
+      - name: Detect release branch version
+        id: release-version
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const prs = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              ...context.repo,
+              commit_sha: context.sha,
+            });
+
+            const releasePr = prs.data.find((pr) =>
+              pr.merged_at &&
+              /^release\/v\d+\.\d+\.\d+$/.test(pr.head.ref)
+            );
+
+            if (!releasePr) {
+              core.setOutput("version", "");
+              return;
+            }
+
+            const version = releasePr.head.ref.slice("release/v".length);
+            core.setOutput("version", version);
+            core.info(`Detected release version ${version} from ${releasePr.head.ref}`);
+
+      - name: Configure requested release version
+        if: steps.release-version.outputs.version != ''
+        env:
+          RELEASE_VERSION: ${{ steps.release-version.outputs.version }}
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const config = JSON.parse(fs.readFileSync("release-please-config.json", "utf8"));
+            config.packages["."]["release-as"] = process.env.RELEASE_VERSION;
+            fs.writeFileSync("release-please.release-as.json", JSON.stringify(config, null, 2));
+          '
+
       - name: Create or update release PR
         id: release
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: ${{ steps.release-version.outputs.version != '' && 'release-please.release-as.json' || 'release-please-config.json' }}
 
       - name: Assign release PRs to ksysctl
         if: steps.release.outputs.prs_created == 'true'

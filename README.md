@@ -201,7 +201,7 @@ into it. Small changes are accumulated on a release branch:
 1. Create `release/vMAJOR.MINOR.PATCH`, for example `release/v1.5.0`.
 2. Merge feature/fix PRs into that release branch.
 3. Merge the final `release/*` PR into `main`.
-4. Release Please creates or updates its automated release PR.
+4. Release Please reads the `release/vMAJOR.MINOR.PATCH` version and creates or updates its automated release PR for that exact version.
 5. Merge the Release Please PR to create the tag, GitHub Release, and npm
    publication.
 

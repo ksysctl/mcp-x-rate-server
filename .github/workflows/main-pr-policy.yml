@@ -18,8 +18,8 @@ jobs:
         with:
           script: |
             const head = context.payload.pull_request.head.ref;
-            const allowed =
-              head.startsWith("release/") ||
+            const releaseBranch = /^release\/v\d+\.\d+\.\d+$/.exec(head);
+            const allowed = releaseBranch !== null ||
               head.startsWith("release-please--");
 
             if (!allowed) {

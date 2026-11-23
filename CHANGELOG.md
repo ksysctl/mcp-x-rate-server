@@ -86,6 +86,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 - Build release output before publishing and allow manual retries for an existing release tag.
 - Add deterministic end-to-end MCP coverage for stdio initialization, tool discovery, and tool invocation.
 - Use ESLint `defineConfig()` and `globalIgnores()` for the supported flat configuration API.
+- Detect requested release versions from `release/vMAJOR.MINOR.PATCH` branch names and pass them to Release Please.
 
 ## [1.0.0] - 2026-11-22
 
