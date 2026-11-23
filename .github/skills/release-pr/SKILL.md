@@ -11,7 +11,7 @@ When this skill is invoked:
 2. **Inspect git state**: Run `git status` and `git diff` to review all modified and untracked files.
 3. **Create a release branch (if on `main`)**:
    - Check the current branch via `git branch --show-current`.
-   - If on `main`, create and switch to `release/vMAJOR.MINOR.PATCH` (for example, `release/v1.5.0`) using the next version required by the Conventional Commits included in the release.
+   - If on `main`, create and switch to `release/vMAJOR.MINOR.PATCH` (for example, `release/v1.5.0`). The version in this branch name is authoritative for the release.
    - Use a patch bump for `fix:`/`perf:`, a minor bump for `feat:`, and a major bump for breaking changes.
    - Merge ordinary feature and fix PRs into this release branch; never merge them directly into `main`.
 4. **Update `CHANGELOG.md`**:
