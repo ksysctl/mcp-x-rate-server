@@ -34,6 +34,6 @@ When this skill is invoked:
    - Commit using **Conventional Commits** (`feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`).
 8. **Push and create PR**:
    - Push the branch with `git push -u origin <branch-name>`.
-   - If GitHub CLI (`gh`) is installed and authenticated, open a PR with `gh pr create --base main --head <branch-name> --fill` (or a clear title and summary body).
+   - If GitHub CLI (`gh`) is installed and authenticated, open a PR with the `release` label: `gh pr create --base main --head <branch-name> --label release --fill` (or a clear title and summary body).
    - Explicitly disable auto-merge and do not run `gh pr merge`.
    - Otherwise, output the direct GitHub compare URL for `main...<branch-name>` so the user can open the PR in one click.
