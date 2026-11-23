@@ -20,8 +20,8 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
+      release_created: ${{ steps.release.outputs.release_created || 'false' }}
+      tag_name: ${{ steps.release.outputs.tag_name || '' }}
     steps:
       - name: Check out merge commit
         uses: actions/checkout@v7
@@ -50,24 +50,26 @@ jobs:
             core.setOutput("version", version);
             core.info(`Detected release version ${version} from ${releasePr.head.ref}`);
 
-      - name: Configure requested release version
-        if: steps.release-version.outputs.version != ''
-        env:
-          RELEASE_VERSION: ${{ steps.release-version.outputs.version }}
-        run: |
-          node -e '
-            const fs = require("node:fs");
-            const config = JSON.parse(fs.readFileSync("release-please-config.json", "utf8"));
-            config.packages["."]["release-as"] = process.env.RELEASE_VERSION;
-            fs.writeFileSync("release-please.release-as.json", JSON.stringify(config, null, 2));
-          '
-
       - name: Create or update release PR
         id: release
+        if: steps.release-version.outputs.version == ''
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          config-file: ${{ steps.release-version.outputs.version != '' && 'release-please.release-as.json' || 'release-please-config.json' }}
+
+      - name: Create release PR with branch version
+        if: steps.release-version.outputs.version != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.release-version.outputs.version }}
+        run: |
+          npx --yes release-please release-pr \
+            --token "$GH_TOKEN" \
+            --repo-url ksysctl/mcp-x-rate-server \
+            --target-branch main \
+            --config-file release-please-config.json \
+            --manifest-file .release-please-manifest.json \
+            --release-as "$RELEASE_VERSION"
 
       - name: Assign release PRs to ksysctl
         if: steps.release.outputs.prs_created == 'true'
@@ -79,6 +81,25 @@ jobs:
             const pullRequests = JSON.parse(process.env.PULL_REQUESTS ?? "[]");
 
             for (const pullRequest of pullRequests) {
+              await github.rest.issues.addAssignees({
+                ...context.repo,
+                issue_number: pullRequest.number,
+                assignees: ["ksysctl"],
+              });
+            }
+
+      - name: Assign CLI-created release PR
+        if: steps.release-version.outputs.version != ''
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const prs = await github.rest.pulls.list({
+              ...context.repo,
+              state: "open",
+              head: "ksysctl:release-please--branches--main--components--dgt-x-rate-mcp",
+            });
+
+            for (const pullRequest of prs.data) {
               await github.rest.issues.addAssignees({
                 ...context.repo,
                 issue_number: pullRequest.number,
