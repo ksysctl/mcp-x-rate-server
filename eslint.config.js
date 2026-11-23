@@ -1,10 +1,11 @@
 import eslint from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
+import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
-  { ignores: ["build/**", "node_modules/**"] },
+export default defineConfig(
+  globalIgnores(["build/**", "node_modules/**"]),
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   {
