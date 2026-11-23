@@ -81,16 +81,19 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Added
 
+- Add a `create-pr` skill for creating regular pull requests.
 - Add npm package metadata and automated Release Please/npm publishing workflow.
 
 ### Changed
 
+- Route feature and fix pull requests through the active release branch and keep release PR merges manual.
 - Standardize Release Please tags to `v<version>` and shorten generated release PR titles.
 - Synchronize `skills/dgt-x-rate/SKILL.md` with package releases.
 - Protect `main` and require `release/*` or Release Please PR sources.
 
 ### Fixed
 
+- Run Release Please only after authorized release branch or Release Please merges.
 - Build release output before publishing and allow manual retries for an existing release tag.
 - Add deterministic end-to-end MCP coverage for stdio initialization, tool discovery, and tool invocation.
 - Use ESLint `defineConfig()` and `globalIgnores()` for the supported flat configuration API.
