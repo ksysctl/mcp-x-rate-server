@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [1.4.1](https://github.com/ksysctl/mcp-x-rate-server/compare/v1.4.0...v1.4.1) (2026-11-23)
+
+
+### Bug Fixes
+
+* use ESLint defineConfig helper ([#19](https://github.com/ksysctl/mcp-x-rate-server/issues/19)) ([f53cc4b](https://github.com/ksysctl/mcp-x-rate-server/commit/f53cc4b50c4392f141ee6c5b4896ab1c4d001342))
+
 ## [1.4.0](https://github.com/ksysctl/mcp-x-rate-server/compare/dgt-x-rate-mcp-v1.3.0...dgt-x-rate-mcp-v1.4.0) (2026-11-22)
 
 
