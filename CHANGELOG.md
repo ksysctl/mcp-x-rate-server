@@ -72,6 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 - Standardize Release Please tags to `v<version>` and shorten generated release PR titles.
 - Synchronize `skills/dgt-x-rate/SKILL.md` with package releases.
+- Protect `main` and require `release/*` or Release Please PR sources.
 
 ### Fixed
 

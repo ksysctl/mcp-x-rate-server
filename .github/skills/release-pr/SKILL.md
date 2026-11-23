@@ -9,9 +9,11 @@ When this skill is invoked:
 
 1. **Verify quality first**: Run `npm run check` (`npm run lint && npm test`). Do not proceed if linting, build, or tests fail.
 2. **Inspect git state**: Run `git status` and `git diff` to review all modified and untracked files.
-3. **Create a branch (if on `main`)**:
+3. **Create a release branch (if on `main`)**:
    - Check the current branch via `git branch --show-current`.
-   - If on `main`, create and switch to a descriptive branch using `<type>/<short-kebab-description>` (e.g., `feat/add-eur-rate`, `fix/cache-ttl`, `docs/update-readme`).
+   - If on `main`, create and switch to `release/vMAJOR.MINOR.PATCH` (for example, `release/v1.5.0`) using the next version required by the Conventional Commits included in the release.
+   - Use a patch bump for `fix:`/`perf:`, a minor bump for `feat:`, and a major bump for breaking changes.
+   - Merge ordinary feature and fix PRs into this release branch; never merge them directly into `main`.
 4. **Update `CHANGELOG.md`**:
    - If `CHANGELOG.md` does not exist, create it using [Keep a Changelog](https://keepachangelog.com) format with an `## [Unreleased]` section.
    - Add a concise bullet under `### Added`, `### Changed`, `### Fixed`, or `### Documentation` summarizing the changes.

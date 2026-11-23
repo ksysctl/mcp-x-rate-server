@@ -195,11 +195,21 @@ DGT_BASE_URL=http://127.0.0.1:3000 node build/src/index.js
 
 ## Releases
 
-Use [Conventional Commits](https://www.conventionalcommits.org/) on `main`:
-`fix:` creates a patch release, `feat:` a minor release, and a breaking change
-creates a major release. Release Please opens a PR with the version and
-`CHANGELOG.md` updates. Merging that PR creates a GitHub Release and publishes
-the package to npm.
+The repository prevents direct pushes to `main` and ordinary PRs from merging
+into it. Small changes are accumulated on a release branch:
+
+1. Create `release/vMAJOR.MINOR.PATCH`, for example `release/v1.5.0`.
+2. Merge feature/fix PRs into that release branch.
+3. Merge the final `release/*` PR into `main`.
+4. Release Please creates or updates its automated release PR.
+5. Merge the Release Please PR to create the tag, GitHub Release, and npm
+   publication.
+
+Use [Conventional Commits](https://www.conventionalcommits.org/) to determine
+the proposed version: `fix:` or `perf:` creates a patch release, `feat:`
+creates a minor release, and a breaking change creates a major release.
+The highest required bump across the release branch determines the version.
+Release Please remains the authoritative check for the final package version.
 
 Release tags use the standard `v<version>` format. Older
 `dgt-x-rate-mcp-v<version>` tags remain available for compatibility.
