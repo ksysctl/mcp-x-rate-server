@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [1.4.2](https://github.com/ksysctl/mcp-x-rate-server/compare/v1.4.1...v1.4.2) (2026-11-23)
+
+
+### Bug Fixes
+
+* detect release version from branch name ([#21](https://github.com/ksysctl/mcp-x-rate-server/issues/21)) ([208f6f0](https://github.com/ksysctl/mcp-x-rate-server/commit/208f6f0484aac6d4c19e7c657c6b66e90acc9428))
+* detect release version from branch name ([#22](https://github.com/ksysctl/mcp-x-rate-server/issues/22)) ([2694ec9](https://github.com/ksysctl/mcp-x-rate-server/commit/2694ec93289e4d23325a7c9a9cacd2c6c9947428))
+
 ## [1.4.1](https://github.com/ksysctl/mcp-x-rate-server/compare/v1.4.0...v1.4.1) (2026-11-23)
 
 
