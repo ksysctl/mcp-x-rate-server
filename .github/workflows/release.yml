@@ -26,8 +26,8 @@ jobs:
       - name: Check out merge commit
         uses: actions/checkout@v7
 
-      - name: Detect release branch version
-        id: release-version
+      - name: Detect authorized release merge
+        id: release-source
         uses: actions/github-script@v8
         with:
           script: |
@@ -41,27 +41,54 @@ jobs:
               /^release\/v\d+\.\d+\.\d+$/.test(pr.head.ref)
             );
 
+            const releasePleasePr = prs.data.find((pr) =>
+              pr.merged_at &&
+              pr.head.ref.startsWith("release-please--")
+            );
+
             if (!releasePr) {
               core.setOutput("version", "");
-              return;
+            } else {
+              const version = releasePr.head.ref.slice("release/v".length);
+              core.setOutput("version", version);
+              core.info(`Detected release version ${version} from ${releasePr.head.ref}`);
             }
 
-            const version = releasePr.head.ref.slice("release/v".length);
-            core.setOutput("version", version);
-            core.info(`Detected release version ${version} from ${releasePr.head.ref}`);
+            if (releasePr || releasePleasePr) {
+              core.setOutput("authorized", "true");
+              core.info("Authorized release merge detected");
+            } else {
+              core.setOutput("authorized", "false");
+
+              const ordinaryPr = prs.data.find((pr) => pr.merged_at);
+              const branch = ordinaryPr?.head.ref ?? "";
+              const commitMessage = context.payload.head_commit?.message ?? "";
+              const conventionalPrefix =
+                /^(feat|fix)(\([^)]*\))?!?:/i.test(commitMessage);
+              const branchPrefix =
+                /^(feat|fix)(\/|-)/i.test(branch);
+
+              if (conventionalPrefix || branchPrefix) {
+                core.info(
+                  `Release Please skipped: detected feat/fix commit or branch (${branch || "direct push"}).`
+                );
+              } else {
+                core.info("Release Please skipped: push is not from an authorized release merge.");
+              }
+            }
 
       - name: Create or update release PR
         id: release
-        if: steps.release-version.outputs.version == ''
+        if: steps.release-source.outputs.authorized == 'true' && steps.release-source.outputs.version == ''
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release PR with branch version
-        if: steps.release-version.outputs.version != ''
+        if: steps.release-source.outputs.authorized == 'true' && steps.release-source.outputs.version != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ steps.release-version.outputs.version }}
+          RELEASE_VERSION: ${{ steps.release-source.outputs.version }}
         run: |
           npx --yes release-please release-pr \
             --token "$GH_TOKEN" \
@@ -89,7 +116,7 @@ jobs:
             }
 
       - name: Assign CLI-created release PR
-        if: steps.release-version.outputs.version != ''
+        if: steps.release-source.outputs.authorized == 'true' && steps.release-source.outputs.version != ''
         uses: actions/github-script@v8
         with:
           script: |
