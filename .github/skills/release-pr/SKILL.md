@@ -15,9 +15,13 @@ When this skill is invoked:
 4. **Update `CHANGELOG.md`**:
    - If `CHANGELOG.md` does not exist, create it using [Keep a Changelog](https://keepachangelog.com) format with an `## [Unreleased]` section.
    - Add a concise bullet under `### Added`, `### Changed`, `### Fixed`, or `### Documentation` summarizing the changes.
-5. **Stage and commit**:
+5. **Update the agent skill version**:
+   - Release Please updates `skills/dgt-x-rate/SKILL.md` as an extra file.
+   - When preparing changes manually or between releases, keep the `version` in that file synchronized with `package.json`.
+   - Keep the `get_usd_crc_rate` instructions and examples synchronized with the tool signature.
+6. **Stage and commit**:
    - Stage changes (`git add -A`) and verify no build artifacts (`build/`, `node_modules/`, `.env`) are staged.
    - Commit using **Conventional Commits** (`feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`).
-6. **Push and create PR**:
+7. **Push and create PR**:
    - Push the branch with `git push -u origin <branch-name>`.
    - If GitHub CLI (`gh`) is installed and authenticated, open a PR with `gh pr create --fill` (or a clear title and summary body). Otherwise, output the direct GitHub compare URL so the user can open the PR in one click.

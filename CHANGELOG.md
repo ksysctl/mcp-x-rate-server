@@ -68,6 +68,11 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 - Add npm package metadata and automated Release Please/npm publishing workflow.
 
+### Changed
+
+- Standardize Release Please tags to `v<version>` and shorten generated release PR titles.
+- Synchronize `skills/dgt-x-rate/SKILL.md` with package releases.
+
 ### Fixed
 
 - Build release output before publishing and allow manual retries for an existing release tag.
