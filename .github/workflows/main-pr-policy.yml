@@ -1,0 +1,29 @@
+name: Main PR Policy
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate-source:
+    name: Validate main PR source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow release branches and Release Please
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const head = context.payload.pull_request.head.ref;
+            const allowed =
+              head.startsWith("release/") ||
+              head.startsWith("release-please--");
+
+            if (!allowed) {
+              core.setFailed(
+                `Pull requests to main must use a release/ branch or a Release Please branch; received "${head}".`
+              );
+            }
