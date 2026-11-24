@@ -87,6 +87,12 @@ void describe("MCP server end-to-end", () => {
       const tool = tools.find((candidate) => candidate.name === "get_usd_crc_rate");
 
       assert.ok(tool);
+      assert.deepEqual(tool.annotations, {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
+      });
 
       const result: unknown = await client.callTool({
         name: "get_usd_crc_rate",

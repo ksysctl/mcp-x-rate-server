@@ -14,6 +14,12 @@ server.registerTool(
   {
     description:
       "Get the official Costa Rica USD to CRC (Colones) bid (compra) and selling (venta) exchange rate from DGT for today or a specific date.",
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
     inputSchema: {
       date: z
         .string()
