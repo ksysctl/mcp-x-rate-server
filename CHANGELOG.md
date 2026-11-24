@@ -89,6 +89,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ### Added
 
+- Add explicit behavioral annotations to the `get_usd_crc_rate` MCP tool.
 - Add a `create-pr` skill for creating regular pull requests.
 - Add npm package metadata and automated Release Please/npm publishing workflow.
 
